@@ -218,10 +218,10 @@ gapi.analytics.ready(function() {
     function trimAccountSummaries(oldSummaries) {
       var newSummaries = [];
       oldSummaries.forEach(function(item) {
-        var account = {name: item.name, properties: []};
+        var account = {id: item.id, name: item.name, properties: []};
         var properties = item.webProperties || [];
         properties.forEach(function(item) {
-          var property = {name: item.name, views: []};
+          var property = {id: item.id, name: item.name, views: []};
           var views = item.profiles || [];
           views.forEach(function(item) {
             var view = {name: item.name, ids: 'ga:' + item.id};
