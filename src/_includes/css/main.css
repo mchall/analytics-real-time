@@ -121,42 +121,12 @@ a:hover {
   background: #fff;
   display: none;
   float: left;
-  margin: 0 0 1.5em 1.5em;
+  margin: 0 0 0 1.5em;
   padding: 1.5em;
 }
 .is-authorized .Component {
   display: block;
 }
-
-/**
- * Viewpicker Component
- */
-
-.Viewpicker {}
-.Viewpicker-item  {
-  display: inline-block;
-  margin-right: 1em;
-}
-.Viewpicker-item:last-child {
-  margin-right: 0;
-}
-.Viewpicker-item > label {
-  font-weight: bold;
-  margin-right: 0.25em;
-}
-.Viewpicker-item select {
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-  height: 34px;
-  line-height: 20px;
-  padding: 6px 12px;
-}
-.Viewpicker-item select:focus {
-  border-color: #4d90fe;
-  outline: 0;
-}
-
 
 /**
  * Button component
@@ -185,11 +155,16 @@ a:hover {
 
 .Realtime {
 }
+.Realtime img{
+  height:125px;
+  float: left;
+}
 .Realtime-content {
   font-size: 20px;
   font-weight: 100;
   line-height: 34px;
-  margin: 0 .25em;
+  margin: 0 2em;
+  float: left;
 }
 .Realtime-value {
   font-weight: 700;

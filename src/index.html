@@ -8,21 +8,18 @@ summary:
   {% for post in site.posts %}
     <section>
       <div class="Component Realtime" id="realtime-{{ post.ga-id }}" data-ga-id="{{ post.ga-id }}">
-        <div class="row">
-          <div class="col-md-4">
-            <img src="assets/images/{{ post.img }}" class="img-responsive">
-          </div>
-          <div class="col-md-8">
-            <h1 class="Realtime-content">
-              {{ post.title }}
-            </h1>
-            <h1 class="Realtime-content">
-              <span class="Realtime-value" id="active-users-{{ post.ga-id }}"></span>
-            </h1>
-          </div>
+        <img src="assets/images/{{ post.img }}" class="img-responsive">
+        <div class="Realtime-content">
+          <h4>
+            {{ post.title }}
+          </h4>
+          <h1>
+            <span class="Realtime-value" id="active-users-{{ post.ga-id }}"></span>
+          </h1>
         </div>
       </div>
     </section>
+    <hr/>
   {% endfor %}
 </main>
 
