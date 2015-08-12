@@ -1,7 +1,6 @@
 ---
 layout: default
 ga-id: 105820225
-img: ACL.jpeg
-title: Test
-site: http://www.test.com/
+img: ga-logo.png
+title: Personal Site
 ---
