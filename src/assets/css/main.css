@@ -33,56 +33,6 @@ a:hover {
 }
 
 /**
- * Hero Component
- */
-.Hero {
-  background-color: #333;
-  box-sizing: border-box;
-  color: #fff;
-  font-kerning: auto;
-  line-height: 1;
-  padding: 3em 2em 4em;
-  text-align: center;
-  width: 100%;
-}
-.Hero-title {
-  font-size: 6em;
-  font-weight: 300;
-  letter-spacing: -0.02em;
-  margin: 0 0 .2em;
-  text-shadow: 0 0 1em rgba(0, 0, 0, 0.8);
-}
-.Hero-subtitle {
-  font-size: 1.8em;
-  font-weight: 300;
-  margin: 0;
-  opacity: 0.6;
-}
-
-/**
- * Partition Component
- */
-.Partition {
-  background-color: transparent;
-}
-.Partition:nth-child(2n) {
-  background-color: #fff;
-}
-.Partition-content {
-  font-size: 1.25em;
-  margin: 0px auto;
-  max-width: 60em;
-  padding: 3em 2em;
-}
-.Partition h2 {
-  font-weight: 300;
-  font-size: 1.8em;
-  line-height: 1.1;
-  margin: 0 0 1em;
-  text-align: center;
-}
-
-/**
  * Demos
  */
 
@@ -122,31 +72,6 @@ a:hover {
 .Demos p {
   font-size: .9em;
   margin: 0;
-}
-
-/**
- * Next Steps Component
- */
-
-.NextSteps {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  text-align: center;
-}
-.NextSteps li {
-  line-height: 1.5;
-}
-@media (min-width: 48em) {
-  .NextSteps li {
-    border-left: 1px solid #aaa;
-    display: inline-block;
-    line-height: 1.5;
-    padding: 0 1em;
-  }
-  .NextSteps li:first-child {
-    border: 0;
-  }
 }
 
 /**
@@ -253,78 +178,6 @@ a:hover {
 .Button:focus {
   box-shadow: inset 0 0 0 1px #FFF;
   outline: none;
-}
-
-/**
- * Datepicker Component
- */
-
-.Datepicker {}
-.Datepicker-item {
-  display: inline-block;
-  margin-right: 1em;
-}
-.Datepicker-item:last-child {
-  margin-right: 0;
-}
-.Datepicker-item label {
-  font-weight: bold;
-}
-.Datepicker-item input {
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-  font: inherit;
-  font-weight: 400;
-  height: 34px;
-  line-height: 20px;
-  margin-right: 1em;
-  padding: 6px;
-
-}
-.Datepicker-item input:focus {
-  border-color: #4d90fe;
-  outline: 0;
-}
-
-
-/**
- * Instructions Component
- */
-
-.Instructions {
-  align-items: center;
-  clear: left;
-  display: none;
-  background: #fff;
-  border: 1px solid #ccc;
-  float: left;
-  margin: 0 0 1.5em 1.5em;
-  padding: 1.5em;
-}
-.Instructions > h2 {
-  font: 300 1.4em/1.2 sans-serif;
-  margin: 0 0 1em;
-}
-.Instructions ul li {
-  margin-bottom: .5em;
-}
-.is-authorized .Instructions {
-  display: block;
-}
-
-/**
- * SourceLink Component
- */
-.SourceLink {
-  clear: both;
-  display: none;
-  padding: 0 1.5em 1.5em;
-  white-space: nowrap;
-}
-.is-authorized .SourceLink,
-.ga-embed-authorized .SourceLink {
-  display: block;
 }
 
 /**
