@@ -35,7 +35,7 @@ gapi.analytics.ready(function() {
       var options = this.get();
       var pollingInterval = (options.pollingInterval || 5) * 1000
       var ga_id = options.ga_id;
-      
+
       if (!(pollingInterval >= 1000)) {
         throw new Error('Frequency cannot be less than 1 second.');
       }
@@ -44,7 +44,7 @@ gapi.analytics.ready(function() {
       gapi.client.analytics.data.realtime
         .get({ids: "ga:" + ga_id, metrics:'rt:activeUsers'})
         .execute(function(response) {
-          var value = response.totalResults ? +response.rows[0][0] : 0;
+          var value = response.totalResults ? + response.rows[0][0] : 0;
 
           if (value > this.activeUsers) this.onIncrease();
           if (value < this.activeUsers) this.onDecrease();
@@ -57,6 +57,29 @@ gapi.analytics.ready(function() {
                 pollingInterval);
           }
         }.bind(this));
+
+        gapi.client.analytics.data.realtime
+          .get({ids: "ga:" + ga_id, metrics:'rt:pageviews', dimensions:'rt:minutesAgo'})
+          .execute(function(response) {
+            var labels = [];
+            var data = [];
+            $.each( response.rows , function( index, value ){
+              labels.unshift(value[0]);
+              data.unshift(value[1]);
+            });
+
+            var chartData = {
+                labels: labels,
+                datasets: [
+                    {
+                        fillColor: "dodgerblue",
+                        data: data
+                    }
+                ]
+            };
+            var ctx = $("#chart-" + ga_id)[0].getContext("2d");
+            var barChart = new Chart(ctx).Bar(chartData);
+          });
     },
 
     onIncrease: function() {

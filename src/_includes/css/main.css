@@ -166,6 +166,10 @@ a:hover {
   margin: 0 2em;
   float: left;
 }
+.Realtime-chart {
+  margin-left: 2em;
+  float: right;
+}
 .Realtime-value {
   font-weight: 700;
 }

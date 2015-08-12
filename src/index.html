@@ -17,6 +17,9 @@ summary:
             <span class="Realtime-value" id="active-users-{{ post.ga-id }}"></span>
           </h1>
         </div>
+        <div class="Realtime-chart">
+          <canvas id="chart-{{ post.ga-id }}" width="600" height="100"></canvas>
+        </div>
       </div>
     </section>
     <hr/>
@@ -26,6 +29,7 @@ summary:
 <script src="assets/js/jquery-1.11.3.min.js"></script>
 <script src="assets/js/bootstrap.min.js"></script>
 {% include embed-api-snippet.html %}
+<script src="assets/js/chart.min.js"></script>
 <script src="assets/js/promise.js"></script>
 
 <!-- This demo uses the active-users component -->
