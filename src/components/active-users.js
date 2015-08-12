@@ -34,14 +34,15 @@ gapi.analytics.ready(function() {
     getActiveUsers: function() {
       var options = this.get();
       var pollingInterval = (options.pollingInterval || 5) * 1000
-
+      var ga_id = options.ga_id;
+      
       if (!(pollingInterval >= 1000)) {
         throw new Error('Frequency cannot be less than 1 second.');
       }
 
       this.polling = true;
       gapi.client.analytics.data.realtime
-        .get({ids:options.ids, metrics:'rt:activeUsers'})
+        .get({ids: "ga:" + ga_id, metrics:'rt:activeUsers'})
         .execute(function(response) {
           var value = response.totalResults ? +response.rows[0][0] : 0;
 

@@ -9,7 +9,7 @@ summary:
     <section>
       <div class="Component Realtime" id="realtime-{{ post.ga-id }}" data-ga-id="{{ post.ga-id }}">
         <h1 class="Realtime-content">
-          {{ post.title }} Active Users:
+          {{ post.title }} :
           <span class="Realtime-value" id="active-users-{{ post.ga-id }}"></span>
         </h1>
       </div>
@@ -20,7 +20,6 @@ summary:
 <script src="assets/js/jquery-1.11.3.min.js"></script>
 {% include embed-api-snippet.html %}
 <script src="assets/js/promise.js"></script>
-<script src="components/viewpicker.js"></script>
 
 <!-- This demo uses the active-users component -->
 <script src="components/active-users.js"></script>
@@ -54,7 +53,8 @@ gapi.analytics.ready(function() {
      */
     var activeUsers{{ post.ga-id }} = new gapi.analytics.ext.ActiveUsers({
       container: 'active-users-{{ post.ga-id }}',
-      pollingInterval: 30
+      pollingInterval: 30,
+      ga_id: {{ post.ga-id }},
     });
 
     /**
@@ -72,6 +72,7 @@ gapi.analytics.ready(function() {
       realtime{{ post.ga-id }}.classList.remove('increase');
       realtime{{ post.ga-id }}.classList.remove('decrease');
     }
+    activeUsers{{ post.ga-id }}.execute();
 
   {% endfor %}
 });
