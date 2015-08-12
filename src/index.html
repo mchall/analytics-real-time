@@ -66,7 +66,7 @@ gapi.analytics.ready(function() {
    */
   var activeUsers = new gapi.analytics.ext.ActiveUsers({
     container: 'active-users',
-    pollingInterval: 5
+    pollingInterval: 10
   });
 
   /**
@@ -90,10 +90,6 @@ gapi.analytics.ready(function() {
    */
   viewpicker.on('change', function(data) {
     activeUsers.set(data).execute();
-    drawWeek(data.ids);
-    drawYear(data.ids);
-    drawBrowserStats(data.ids);
-    drawDeviceUsage(data.ids);
   });
 });
 
