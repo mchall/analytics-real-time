@@ -205,56 +205,6 @@ a:hover {
 }
 
 /**
- * Chart Component
- */
-
-.Chart {}
-.Chart-title {
-  font: 300 1.4em/1.2 sans-serif;
-  margin: 0;
-}
-.Chart-subtitle {
-  font: 700 1.17em/1.2 sans-serif;
-  margin: 0.5em 0 0;
-}
-.Chart-controls {
-  border-top: 1px solid #ccc;
-  margin: 0 -1.5em -1.5em;
-  padding: 1.5em;
-  text-align: center;
-}
-.Chart--chartjs {
-  padding: 2em;
-}
-.Chart--chartjs .Chart-title {
-  font: 700 1.17em/1.2 sans-serif;
-  margin-bottom: 1.7em;
-  text-align: center;
-}
-
-/**
- * Legend Component
- */
-
-.Legend {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  text-align: center;
-}
-.Legend > li {
-  display: inline-block;
-  padding: 1em 1em 0 0;
-}
-.Legend > li > i {
-  display: inline-block;
-  height: 1em;
-  margin-right: .5em;
-  vertical-align: -.1em;
-  width: 1em;
-}
-
-/**
  * Viewpicker Component
  */
 
