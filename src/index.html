@@ -5,16 +5,20 @@ summary:
 ---
 
 <main>
-  {% for post in site.posts %}
-    <section>
-      <div class="Component Realtime" id="realtime-{{ post.ga-id }}" data-ga-id="{{ post.ga-id }}">
-        <h1 class="Realtime-content">
-          {{ post.title }} :
-          <span class="Realtime-value" id="active-users-{{ post.ga-id }}"></span>
-        </h1>
+  <div class="row">
+    {% for post in site.posts %}
+      <div class="col-sm-3">
+        <div class="Component Realtime" id="realtime-{{ post.ga-id }}" data-ga-id="{{ post.ga-id }}">
+          <h1 class="Realtime-content">
+            {{ post.title }}
+          </h1>
+          <h1 class="Realtime-content">
+            <span class="Realtime-value" id="active-users-{{ post.ga-id }}"></span>
+          </h1>
+        </div>
       </div>
-    </section>
-  {% endfor %}
+    {% endfor %}
+  </div>
 </main>
 
 <script src="assets/js/jquery-1.11.3.min.js"></script>
