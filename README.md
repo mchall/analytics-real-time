@@ -1,6 +1,11 @@
 Google Analytics Real-time Viewer
 ================================
 
+View real-time analytics in a single page.
+![Main](http://mchall.github.io/Images/AnalyticsViewer/AnalyticsViewer.png)
+
+Add extra views to the '_posts' folder with the View ID (found in Google Analytics under Admin -> View -> View Settings) and descriptive name. 
+
 ### Building the site using Jekyll
 
 If you're familiar with [Jekyll](http://jekyllrb.com) it can make running the demos locally or deploying them to a remote server much easier. It's actually how this repo is built and how the demo app is deployed.
