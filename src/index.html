@@ -5,25 +5,32 @@ summary:
 ---
 
 <main>
-  {% for post in site.posts %}
-    <section>
-      <div class="Component Realtime" id="realtime-{{ post.ga-id }}" data-ga-id="{{ post.ga-id }}">
-        <img src="assets/images/{{ post.img }}" class="img-responsive">
-        <div class="Realtime-content">
-          <h4>
-            {{ post.title }}
-          </h4>
-          <h1>
-            <span class="Realtime-value" id="active-users-{{ post.ga-id }}"></span>
-          </h1>
-        </div>
-        <div class="Realtime-chart">
-          <canvas id="chart-{{ post.ga-id }}" width="600" height="100"></canvas>
-        </div>
-      </div>
-    </section>
-    <hr/>
-  {% endfor %}
+  <table class="table">
+    <tbody>
+      {% for post in site.posts %}
+      <tr id="realtime-{{ post.ga-id }}">
+        <td>
+          <img src="assets/images/{{ post.img }}" class="img-responsive">
+        </td>
+        <td>
+          <div class="Realtime-content">
+            <h4>
+              {{ post.title }}
+            </h4>
+            <h1>
+              <span class="Realtime-value" id="active-users-{{ post.ga-id }}"></span>
+            </h1>
+          </div>
+        </td>
+        <td>
+          <div class="Realtime-chart">
+            <canvas id="chart-{{ post.ga-id }}" width="600" height="100"></canvas>
+          </div>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 </main>
 
 <script src="assets/js/jquery-1.11.3.min.js"></script>
@@ -39,67 +46,67 @@ summary:
 gapi.analytics.ready(function() {
 
   /**
-   * Authorize this user.
-   */
+  * Authorize this user.
+  */
   gapi.analytics.auth.authorize({
     container: 'auth',
     clientid: '{{ site.client_id }}',
   });
 
   /**
-   * Add a callback to add the `is-authorized` class to the body
-   * as soon as authorization is successful. This is used to help
-   * style components.
-   */
+  * Add a callback to add the `is-authorized` class to the body
+  * as soon as authorization is successful. This is used to help
+  * style components.
+  */
   gapi.analytics.auth.on('success', function() {
     document.body.classList.add('is-authorized');
   });
 
   {% for post in site.posts %}
 
-    /**
-     * Create a new ActiveUsers instance to be rendered inside of an
-     * element with the id "active-users" and poll for changes every
-     * five seconds.
-     */
-    var activeUsers{{ post.ga-id }} = new gapi.analytics.ext.ActiveUsers({
-      container: 'active-users-{{ post.ga-id }}',
-      pollingInterval: 30,
-      ga_id: {{ post.ga-id }},
-    });
+  /**
+  * Create a new ActiveUsers instance to be rendered inside of an
+  * element with the id "active-users" and poll for changes every
+  * five seconds.
+  */
+  var activeUsers{{ post.ga-id }} = new gapi.analytics.ext.ActiveUsers({
+    container: 'active-users-{{ post.ga-id }}',
+    pollingInterval: 30,
+    ga_id: {{ post.ga-id }},
+  });
 
-    /**
-     * This code adds/removes HTML classes to trigger CSS animations
-     * when the active user counts go up or down.
-     */
-    var realtime{{ post.ga-id }} = document.getElementById('realtime-{{ post.ga-id }}');
-    realtime{{ post.ga-id }}.addEventListener('animationend', removeAnimationClasses{{ post.ga-id }});
-    realtime{{ post.ga-id }}.addEventListener('webkitAnimationEnd', removeAnimationClasses{{ post.ga-id }});
-    activeUsers{{ post.ga-id }}.on('stop', removeAnimationClasses{{ post.ga-id }})
-    activeUsers{{ post.ga-id }}.on('change', function(data) {
-      realtime{{ post.ga-id }}.classList.add(data.direction);
-    });
-    function removeAnimationClasses{{ post.ga-id }}() {
-      realtime{{ post.ga-id }}.classList.remove('increase');
-      realtime{{ post.ga-id }}.classList.remove('decrease');
-    }
-    activeUsers{{ post.ga-id }}.execute();
+  /**
+  * This code adds/removes HTML classes to trigger CSS animations
+  * when the active user counts go up or down.
+  */
+  var realtime{{ post.ga-id }} = document.getElementById('realtime-{{ post.ga-id }}');
+  realtime{{ post.ga-id }}.addEventListener('animationend', removeAnimationClasses{{ post.ga-id }});
+  realtime{{ post.ga-id }}.addEventListener('webkitAnimationEnd', removeAnimationClasses{{ post.ga-id }});
+  activeUsers{{ post.ga-id }}.on('stop', removeAnimationClasses{{ post.ga-id }})
+  activeUsers{{ post.ga-id }}.on('change', function(data) {
+    realtime{{ post.ga-id }}.classList.add(data.direction);
+  });
+  function removeAnimationClasses{{ post.ga-id }}() {
+    realtime{{ post.ga-id }}.classList.remove('increase');
+    realtime{{ post.ga-id }}.classList.remove('decrease');
+  }
+  activeUsers{{ post.ga-id }}.execute();
 
   {% endfor %}
 });
 
 /**
- * Execute a Google Analytics Core Reporting API query
- * and return a promise.
- * @param {Object} params The request parameters.
- * @return {Promise} A promise.
- */
+* Execute a Google Analytics Core Reporting API query
+* and return a promise.
+* @param {Object} params The request parameters.
+* @return {Promise} A promise.
+*/
 function query(params) {
   return new Promise(function(resolve, reject) {
     var data = new gapi.analytics.report.Data({query: params});
     data.once('success', function(response) { resolve(response); })
-        .once('error', function(response) { reject(response); })
-        .execute();
+    .once('error', function(response) { reject(response); })
+    .execute();
   });
 }
 
