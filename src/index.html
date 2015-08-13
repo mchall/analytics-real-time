@@ -6,6 +6,12 @@ summary:
 
 <main>
   <table class="table Component">
+    <thead>
+      <tr>
+          <th class="col-sm-4"></th>
+          <th class="col-sm-8"></th>
+      </tr>
+  </thead>
     <tbody>
       {% for post in site.posts %}
       <tr class="Realtime" id="realtime-{{ forloop.index }}">
@@ -21,7 +27,7 @@ summary:
         </td>
         <td>
           <div class="Realtime-chart">
-            <canvas id="chart-{{ post.ga-id }}" width="600" height="100"></canvas>
+            <canvas id="chart-{{ post.ga-id }}"></canvas>
           </div>
         </td>
       </tr>
@@ -40,6 +46,8 @@ summary:
 <script>
   Chart.defaults.global.animation = false;
   Chart.defaults.global.showScale = false;
+  Chart.defaults.Bar.barValueSpacing  = 1;
+  Chart.defaults.Bar.barShowStroke = false;
 </script>
 
 <!-- This demo uses the active-users component -->

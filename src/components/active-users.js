@@ -97,7 +97,6 @@ gapi.analytics.ready(function() {
           datasets: [
             {
               fillColor: "#{{ site.color.primary }}",
-              strokeColor: "#{{ site.color.primary }}",
               data: data
             }
           ]
