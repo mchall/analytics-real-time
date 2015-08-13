@@ -63,7 +63,7 @@ gapi.analytics.ready(function() {
       .execute(function(response) {
         var labels = [];
         var data = [];
-        var count = 0;
+        var count = 1;
 
         if(response.rows == undefined){
           response.rows = [];
@@ -71,15 +71,17 @@ gapi.analytics.ready(function() {
 
         $.each( response.rows , function( index, value ){
 
-          while (value[0] != count) {
+          if(value[0] > 0) {
+            while (value[0] != count) {
+              labels.unshift('');
+              data.unshift(0);
+              count++;
+            }
+
             labels.unshift('');
-            data.unshift(0);
+            data.unshift(value[1]);
             count++;
           }
-
-          labels.unshift('');
-          data.unshift(value[1]);
-          count++;
         });
 
         while (count < 30) {
@@ -93,6 +95,7 @@ gapi.analytics.ready(function() {
           datasets: [
             {
               fillColor: "dodgerblue",
+              strokeColor: "dodgerblue",
               data: data
             }
           ]
