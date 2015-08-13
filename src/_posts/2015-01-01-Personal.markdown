@@ -1,5 +1,4 @@
 ---
 ga-id: 105820225
-img: ga-logo.png
 title: Personal Site
 ---

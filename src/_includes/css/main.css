@@ -121,7 +121,6 @@ a:hover {
   background: #fff;
   display: none;
   float: left;
-  margin: 0 0 0 1.5em;
   padding: 1.5em;
 }
 .is-authorized .Component {
