@@ -83,9 +83,9 @@ gapi.analytics.ready(function() {
   activeUsers{{ forloop.index }}.on('change', function(data) {
     realtime{{ forloop.index }}.classList.add(data.direction);
   });
-  function removeAnimationClasses{{ forloop.index }}(item) {
-    $(item).classList.remove('increase');
-    $(item).classList.remove('decrease');
+  function removeAnimationClasses{{ forloop.index }}() {
+    activeUsers{{ forloop.index }}.classList.remove('increase');
+    activeUsers{{ forloop.index }}.classList.remove('decrease');
   }
   activeUsers{{ forloop.index }}.execute();
 
