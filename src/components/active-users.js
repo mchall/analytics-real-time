@@ -6,7 +6,7 @@ gapi.analytics.ready(function() {
 
       // Allow container to be a string ID or an HTMLElement.
       this.container = typeof options.container == 'string' ?
-        document.getElementById(options.container) : options.container;
+      document.getElementById(options.container) : options.container;
 
       this.polling = false;
       this.activeUsers = 0;
@@ -42,44 +42,53 @@ gapi.analytics.ready(function() {
 
       this.polling = true;
       gapi.client.analytics.data.realtime
-        .get({ids: "ga:" + ga_id, metrics:'rt:activeUsers'})
-        .execute(function(response) {
-          var value = response.totalResults ? + response.rows[0][0] : 0;
+      .get({ids: "ga:" + ga_id, metrics:'rt:activeUsers'})
+      .execute(function(response) {
+        var value = response.totalResults ? + response.rows[0][0] : 0;
 
-          if (value > this.activeUsers) this.onIncrease();
-          if (value < this.activeUsers) this.onDecrease();
+        if (value > this.activeUsers) this.onIncrease();
+        if (value < this.activeUsers) this.onDecrease();
 
-          this.activeUsers = value;
-          this.container.innerHTML = value;
+        this.activeUsers = value;
+        this.container.innerHTML = value;
 
-          if (this.polling = true) {
-            this.timeout = setTimeout(this.getActiveUsers.bind(this),
-                pollingInterval);
+        if (this.polling = true) {
+          this.timeout = setTimeout(this.getActiveUsers.bind(this),
+          pollingInterval);
+        }
+      }.bind(this));
+
+      gapi.client.analytics.data.realtime
+      .get({ids: "ga:" + ga_id, metrics:'rt:pageviews', dimensions:'rt:minutesAgo'})
+      .execute(function(response) {
+        var labels = [];
+        var data = [];
+        var count = 0;
+        $.each( response.rows , function( index, value ){
+
+          while (value[0] != count) {
+            labels.unshift("");
+            data.unshift(0);
+            count++;
           }
-        }.bind(this));
 
-        gapi.client.analytics.data.realtime
-          .get({ids: "ga:" + ga_id, metrics:'rt:pageviews', dimensions:'rt:minutesAgo'})
-          .execute(function(response) {
-            var labels = [];
-            var data = [];
-            $.each( response.rows , function( index, value ){
-              labels.unshift(value[0]);
-              data.unshift(value[1]);
-            });
+          labels.unshift("");
+          data.unshift(value[1]);
+          count++;
+        });
 
-            var chartData = {
-                labels: labels,
-                datasets: [
-                    {
-                        fillColor: "dodgerblue",
-                        data: data
-                    }
-                ]
-            };
-            var ctx = $("#chart-" + ga_id)[0].getContext("2d");
-            var barChart = new Chart(ctx).Bar(chartData);
-          });
+        var chartData = {
+          labels: labels,
+          datasets: [
+            {
+              fillColor: "dodgerblue",
+              data: data
+            }
+          ]
+        };
+        var ctx = $("#chart-" + ga_id)[0].getContext("2d");
+        var barChart = new Chart(ctx).Bar(chartData);
+      });
     },
 
     onIncrease: function() {
