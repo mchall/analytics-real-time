@@ -107,12 +107,12 @@ a:hover {
   font-weight: 700;
 }
 .Realtime.increase {
-  -webkit-animation: increase 3s;
-  animation: increase 3s;
+  -webkit-animation: increase 6s;
+  animation: increase 6s;
 }
 .Realtime.decrease {
-  -webkit-animation: decrease 3s;
-  animation: decrease 3s;
+  -webkit-animation: decrease 6s;
+  animation: decrease 6s;
 }
 @-webkit-keyframes increase {
   0% {}

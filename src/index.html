@@ -83,19 +83,20 @@ gapi.analytics.ready(function() {
     * when the active user counts go up or down.
     */
     var realtime{{ forloop.index }} = document.getElementById('realtime-{{ forloop.index }}');
-    realtime{{ forloop.index }}.addEventListener('animationend', removeAnimationClasses{{ forloop.index }});
-    realtime{{ forloop.index }}.addEventListener('webkitAnimationEnd', removeAnimationClasses{{ forloop.index }});
-    activeUsers{{ forloop.index }}.on('stop', removeAnimationClasses{{ forloop.index }})
+    realtime{{ forloop.index }}.addEventListener('animationend', removeAnimationClasses);
+    realtime{{ forloop.index }}.addEventListener('webkitAnimationEnd', removeAnimationClasses);
+    activeUsers{{ forloop.index }}.on('stop', removeAnimationClasses)
     activeUsers{{ forloop.index }}.on('change', function(data) {
       realtime{{ forloop.index }}.classList.add(data.direction);
     });
-    function removeAnimationClasses{{ forloop.index }}() {
-      realtime{{ forloop.index }}.classList.remove('increase');
-      realtime{{ forloop.index }}.classList.remove('decrease');
-    }
     activeUsers{{ forloop.index }}.execute();
 
   {% endfor %}
+
+  function removeAnimationClasses() {
+    $('.Realtime').removeClass('increase');
+    $('.Realtime').removeClass('decrease');
+  }
 });
 
 /**
