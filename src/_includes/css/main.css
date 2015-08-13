@@ -89,6 +89,9 @@ a:hover {
 .Realtime {
   color: black;
 }
+.Realtime td {
+  border-bottom: 2px solid #ecf0f1 !important;
+}
 .Realtime img{
   height:125px;
   float: left;
