@@ -67,15 +67,21 @@ gapi.analytics.ready(function() {
         $.each( response.rows , function( index, value ){
 
           while (value[0] != count) {
-            labels.unshift("");
+            labels.unshift('');
             data.unshift(0);
             count++;
           }
 
-          labels.unshift("");
+          labels.unshift('');
           data.unshift(value[1]);
           count++;
         });
+
+        while (count < 30) {
+          labels.unshift('');
+          data.unshift(0);
+          count++;
+        }
 
         var chartData = {
           labels: labels,
