@@ -64,6 +64,11 @@ gapi.analytics.ready(function() {
         var labels = [];
         var data = [];
         var count = 0;
+
+        if(response.rows == undefined){
+          response.rows = [];
+        }
+
         $.each( response.rows , function( index, value ){
 
           while (value[0] != count) {
