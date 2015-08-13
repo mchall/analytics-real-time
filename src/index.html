@@ -8,14 +8,14 @@ summary:
   <table class="table Component Realtime">
     <tbody>
       {% for post in site.posts %}
-      <tr id="realtime-{{ post.ga-id }}">
+      <tr id="realtime-{{ forloop.index }}">
         <td>
           <div class="Realtime-content">
             <h4>
               {{ post.title }}
             </h4>
             <h1>
-              <span class="Realtime-value" id="active-users-{{ post.ga-id }}"></span>
+              <span class="Realtime-value" id="active-users-{{ forloop.index }}"></span>
             </h1>
           </div>
         </td>
@@ -66,8 +66,8 @@ gapi.analytics.ready(function() {
   * element with the id "active-users" and poll for changes every
   * five seconds.
   */
-  var activeUsers{{ post.ga-id }} = new gapi.analytics.ext.ActiveUsers({
-    container: 'active-users-{{ post.ga-id }}',
+  var activeUsers{{ forloop.index }} = new gapi.analytics.ext.ActiveUsers({
+    container: 'active-users-{{ forloop.index }}',
     pollingInterval: 30,
     ga_id: {{ post.ga-id }},
   });
@@ -76,18 +76,18 @@ gapi.analytics.ready(function() {
   * This code adds/removes HTML classes to trigger CSS animations
   * when the active user counts go up or down.
   */
-  var realtime{{ post.ga-id }} = document.getElementById('realtime-{{ post.ga-id }}');
-  realtime{{ post.ga-id }}.addEventListener('animationend', removeAnimationClasses{{ post.ga-id }});
-  realtime{{ post.ga-id }}.addEventListener('webkitAnimationEnd', removeAnimationClasses{{ post.ga-id }});
-  activeUsers{{ post.ga-id }}.on('stop', removeAnimationClasses{{ post.ga-id }})
-  activeUsers{{ post.ga-id }}.on('change', function(data) {
-    realtime{{ post.ga-id }}.classList.add(data.direction);
+  var realtime{{ forloop.index }} = document.getElementById('realtime-{{ forloop.index }}');
+  realtime{{ forloop.index }}.addEventListener('animationend', removeAnimationClasses{{ forloop.index }});
+  realtime{{ forloop.index }}.addEventListener('webkitAnimationEnd', removeAnimationClasses{{ forloop.index }});
+  activeUsers{{ forloop.index }}.on('stop', removeAnimationClasses{{ forloop.index }})
+  activeUsers{{ forloop.index }}.on('change', function(data) {
+    realtime{{ forloop.index }}.classList.add(data.direction);
   });
-  function removeAnimationClasses{{ post.ga-id }}() {
-    realtime{{ post.ga-id }}.classList.remove('increase');
-    realtime{{ post.ga-id }}.classList.remove('decrease');
+  function removeAnimationClasses{{ forloop.index }}(item) {
+    $(item).classList.remove('increase');
+    $(item).classList.remove('decrease');
   }
-  activeUsers{{ post.ga-id }}.execute();
+  activeUsers{{ forloop.index }}.execute();
 
   {% endfor %}
 });
