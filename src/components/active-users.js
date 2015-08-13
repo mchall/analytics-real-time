@@ -50,7 +50,7 @@ gapi.analytics.ready(function() {
         if (value < this.activeUsers) this.onDecrease();
 
         this.activeUsers = value;
-        this.container.innerHTML = value;
+        $(this.container).prop('number', this.container.innerHTML).animateNumber({ number: value }, 2000);
 
         if (this.polling = true) {
           this.timeout = setTimeout(this.getActiveUsers.bind(this),

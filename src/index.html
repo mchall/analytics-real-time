@@ -34,6 +34,7 @@ summary:
 <script src="assets/js/bootstrap.min.js"></script>
 {% include embed-api-snippet.html %}
 <script src="assets/js/chart.min.js"></script>
+<script src="assets/js/jquery.animateNumber.min.js"></script>
 <script src="assets/js/promise.js"></script>
 
 <script>
@@ -66,33 +67,33 @@ gapi.analytics.ready(function() {
 
   {% for post in site.posts %}
 
-  /**
-  * Create a new ActiveUsers instance to be rendered inside of an
-  * element with the id "active-users" and poll for changes every
-  * five seconds.
-  */
-  var activeUsers{{ forloop.index }} = new gapi.analytics.ext.ActiveUsers({
-    container: 'active-users-{{ forloop.index }}',
-    pollingInterval: 30,
-    ga_id: {{ post.ga-id }},
-  });
+    /**
+    * Create a new ActiveUsers instance to be rendered inside of an
+    * element with the id "active-users" and poll for changes every
+    * five seconds.
+    */
+    var activeUsers{{ forloop.index }} = new gapi.analytics.ext.ActiveUsers({
+      container: 'active-users-{{ forloop.index }}',
+      pollingInterval: 30,
+      ga_id: {{ post.ga-id }},
+    });
 
-  /**
-  * This code adds/removes HTML classes to trigger CSS animations
-  * when the active user counts go up or down.
-  */
-  var realtime{{ forloop.index }} = document.getElementById('realtime-{{ forloop.index }}');
-  realtime{{ forloop.index }}.addEventListener('animationend', removeAnimationClasses{{ forloop.index }});
-  realtime{{ forloop.index }}.addEventListener('webkitAnimationEnd', removeAnimationClasses{{ forloop.index }});
-  activeUsers{{ forloop.index }}.on('stop', removeAnimationClasses{{ forloop.index }})
-  activeUsers{{ forloop.index }}.on('change', function(data) {
-    realtime{{ forloop.index }}.classList.add(data.direction);
-  });
-  function removeAnimationClasses{{ forloop.index }}() {
-    realtime{{ forloop.index }}.classList.remove('increase');
-    realtime{{ forloop.index }}.classList.remove('decrease');
-  }
-  activeUsers{{ forloop.index }}.execute();
+    /**
+    * This code adds/removes HTML classes to trigger CSS animations
+    * when the active user counts go up or down.
+    */
+    var realtime{{ forloop.index }} = document.getElementById('realtime-{{ forloop.index }}');
+    realtime{{ forloop.index }}.addEventListener('animationend', removeAnimationClasses{{ forloop.index }});
+    realtime{{ forloop.index }}.addEventListener('webkitAnimationEnd', removeAnimationClasses{{ forloop.index }});
+    activeUsers{{ forloop.index }}.on('stop', removeAnimationClasses{{ forloop.index }})
+    activeUsers{{ forloop.index }}.on('change', function(data) {
+      realtime{{ forloop.index }}.classList.add(data.direction);
+    });
+    function removeAnimationClasses{{ forloop.index }}() {
+      realtime{{ forloop.index }}.classList.remove('increase');
+      realtime{{ forloop.index }}.classList.remove('decrease');
+    }
+    activeUsers{{ forloop.index }}.execute();
 
   {% endfor %}
 });
