@@ -1,6 +1,6 @@
-html {
-  background: #f4f2f0;
-}
+---
+---
+
 body {
   color: #222;
   font: 12px/1.4 'Open Sans', sans-serif;
@@ -33,55 +33,13 @@ a:hover {
 }
 
 /**
- * Demos
- */
-
-.Demos {
-  margin-left: -3em;
-  overflow: hidden;
-}
-.Demos-column {
-  box-sizing: border-box;
-  margin-bottom: -2em;
-  padding-left: 3em;
-}
-@media (min-width: 40em) {
-  .Demos-column {
-    float: left;
-    width: 50%;
-  }
-}
-.Demos h3 {
-  font-weight: 300;
-  font-size: 1.25em;
-  line-height: 1.2;
-  margin: 0 0 .667em;
-}
-.Demos a {
-  color: inherit;
-  display: block;
-  margin: 0 0 2em;
-  text-decoration: none;
-}
-.Demos a h3 {
-  color: #f05721;
-}
-.Demos a:hover h3 {
-  text-decoration: underline;
-}
-.Demos p {
-  font-size: .9em;
-  margin: 0;
-}
-
-/**
  * Banner Component
  */
 
 .Banner {
-  background-color: #333;
+  background-color: #{{ site.color.primary }};
   box-sizing: border-box;
-  color: #eee;
+  color: #{{ site.color.secondary }};
   display: table;
   margin-bottom: 1.5em;
   padding: 1.2em 1.5em;
@@ -95,9 +53,6 @@ a:hover {
   vertical-align: middle;
   width: 100%;
 }
-.Banner-title a {
-  color: inherit;
-}
 .Banner-title em {
   font-weight: 300;
   font-size: .8em;
@@ -106,7 +61,7 @@ a:hover {
   opacity: .6;
 }
 .Banner-auth {
-  color: #ccc;
+  color: #{{ site.color.secondary }};
   display: table-cell;
   font-size: 1.1em;
   vertical-align: middle;
@@ -128,31 +83,11 @@ a:hover {
 }
 
 /**
- * Button component
- */
-
-.Button {
-  border: 1px solid #2F5BB7;
-  border-radius: 2px;
-  background: #498cf6;
-  color: #fff;
-  cursor: pointer;
-  font: inherit;
-  font-weight: bold;
-  margin-left: 1em;
-  min-width: 72px;
-  padding: 6px 12px;
-}
-.Button:focus {
-  box-shadow: inset 0 0 0 1px #FFF;
-  outline: none;
-}
-
-/**
  * Realtime Component
  */
 
 .Realtime {
+  color: black;
 }
 .Realtime img{
   height:125px;

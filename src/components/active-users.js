@@ -1,3 +1,5 @@
+---
+---
 gapi.analytics.ready(function() {
 
   gapi.analytics.createComponent('ActiveUsers', {
@@ -94,8 +96,8 @@ gapi.analytics.ready(function() {
           labels: labels,
           datasets: [
             {
-              fillColor: "dodgerblue",
-              strokeColor: "dodgerblue",
+              fillColor: "#{{ site.color.primary }}",
+              strokeColor: "#{{ site.color.primary }}",
               data: data
             }
           ]
