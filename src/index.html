@@ -36,6 +36,10 @@ summary:
 <script src="assets/js/chart.min.js"></script>
 <script src="assets/js/promise.js"></script>
 
+<script>
+  Chart.defaults.global.animation = false;
+</script>
+
 <!-- This demo uses the active-users component -->
 <script src="components/active-users.js"></script>
 
@@ -84,8 +88,8 @@ gapi.analytics.ready(function() {
     realtime{{ forloop.index }}.classList.add(data.direction);
   });
   function removeAnimationClasses{{ forloop.index }}() {
-    activeUsers{{ forloop.index }}.classList.remove('increase');
-    activeUsers{{ forloop.index }}.classList.remove('decrease');
+    realtime{{ forloop.index }}.classList.remove('increase');
+    realtime{{ forloop.index }}.classList.remove('decrease');
   }
   activeUsers{{ forloop.index }}.execute();
 
