@@ -2,6 +2,8 @@
 ---
 gapi.analytics.ready(function() {
 
+  var charts = new Object();;
+
   gapi.analytics.createComponent('ActiveUsers', {
 
     initialize: function(options) {
@@ -63,46 +65,55 @@ gapi.analytics.ready(function() {
       gapi.client.analytics.data.realtime
       .get({ids: "ga:" + ga_id, metrics:'rt:pageviews', dimensions:'rt:minutesAgo'})
       .execute(function(response) {
-        var labels = [];
-        var data = [];
-        var count = 1;
+        if(response.code == undefined){
+          var labels = [];
+          var data = [];
+          var count = 1;
 
-        if(response.rows == undefined){
-          response.rows = [];
-        }
+          if(response.rows == undefined){
+            response.rows = [];
+          }
 
-        $.each( response.rows , function( index, value ){
+          $.each( response.rows , function( index, value ){
 
-          if(value[0] > 0) {
-            while (value[0] != count) {
+            if(value[0] > 0) {
+              while (value[0] != count) {
+                labels.unshift('');
+                data.unshift(0);
+                count++;
+              }
+
               labels.unshift('');
-              data.unshift(0);
+              data.unshift(value[1]);
               count++;
             }
+          });
 
+          while (count < 30) {
             labels.unshift('');
-            data.unshift(value[1]);
+            data.unshift(0);
             count++;
           }
-        });
 
-        while (count < 30) {
-          labels.unshift('');
-          data.unshift(0);
-          count++;
+          var chartData = {
+            labels: labels,
+            datasets: [
+              {
+                fillColor: "#{{ site.color.primary }}",
+                data: data
+              }
+            ]
+          };
+          var ctx = $("#chart-" + ga_id)[0].getContext("2d");
+          var barChart = new Chart(ctx).Bar(chartData);
+          charts[ga_id] = barChart;
         }
-
-        var chartData = {
-          labels: labels,
-          datasets: [
-            {
-              fillColor: "#{{ site.color.primary }}",
-              data: data
-            }
-          ]
-        };
-        var ctx = $("#chart-" + ga_id)[0].getContext("2d");
-        var barChart = new Chart(ctx).Bar(chartData);
+        else {
+          //something wrong
+          var chart = charts[ga_id];
+          chart.addData([0], '');
+          chart.removeData();
+        }
       });
     },
 
@@ -121,7 +132,5 @@ gapi.analytics.ready(function() {
         direction: 'decrease'
       });
     }
-
   });
-
 });
