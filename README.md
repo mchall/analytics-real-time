@@ -12,7 +12,7 @@ If you're familiar with [Jekyll](http://jekyllrb.com) it can make running the de
 
 ```sh
 # Clone the repo and cd into the repo directory.
-git clone git@github.com:mchall/analytics-active-users.git
+git clone git@github.com:mchall/analytics-real-time.git
 cd analytics-active-users
 
 # Run the site locally using Jekyll
@@ -21,4 +21,4 @@ jekyll serve
 
 The `jekyll serve` command will build all the files and load up a server on your local machine. Then you can go to [http://localhost:4000](http://localhost:4000) and everything should work fine. If you run `jekyll serve -w` it will also watch for changes to your source files and rebuild the site on the fly. This makes it easy to change a few things and see the results immediately.
 
-If you need to change any of the configuration settings (like your client ID) you can set them in the [_config.yml](https://github.com/mchall/analytics-active-users/blob/master/_config.yml) file and rerun the `jekyll serve` command.
+If you need to change any of the configuration settings (like your client ID) you can set them in the [_config.yml](https://github.com/mchall/analytics-real-time/blob/master/_config.yml) file and rerun the `jekyll serve` command.
