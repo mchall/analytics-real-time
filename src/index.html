@@ -107,21 +107,6 @@ gapi.analytics.ready(function() {
   }
 });
 
-/**
-* Execute a Google Analytics Core Reporting API query
-* and return a promise.
-* @param {Object} params The request parameters.
-* @return {Promise} A promise.
-*/
-function query(params) {
-  return new Promise(function(resolve, reject) {
-    var data = new gapi.analytics.report.Data({query: params});
-    data.once('success', function(response) { resolve(response); })
-    .once('error', function(response) { reject(response); })
-    .execute();
-  });
-}
-
 </script>
 </body>
 </html>
