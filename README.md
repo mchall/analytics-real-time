@@ -13,7 +13,7 @@ If you're familiar with [Jekyll](http://jekyllrb.com) it can make running the de
 ```sh
 # Clone the repo and cd into the repo directory.
 git clone git@github.com:mchall/analytics-real-time.git
-cd analytics-active-users
+cd analytics-real-time
 
 # Run the site locally using Jekyll
 jekyll serve
