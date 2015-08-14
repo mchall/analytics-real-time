@@ -19,8 +19,7 @@ summary:
           </div>
         </div>
         <div class="col-md-8">
-          <div class="Realtime-chart">
-            <canvas id="chart-{{ post.ga-id }}"></canvas>
+          <div class="Realtime-chart" id="chart-{{ post.ga-id }}">
           </div>
         </div>
       </div>
@@ -31,18 +30,9 @@ summary:
 <script src="assets/js/jquery-1.11.3.min.js"></script>
 <script src="assets/js/bootstrap.min.js"></script>
 {% include embed-api-snippet.html %}
-<script src="assets/js/chart.min.js"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1.1','packages':['corechart']}]}"></script>
 <script src="assets/js/jquery.animateNumber.min.js"></script>
 <script src="assets/js/promise.js"></script>
-
-<script>
-Chart.defaults.global.animation = false;
-Chart.defaults.global.showScale = false;
-Chart.defaults.Bar.barValueSpacing  = 1;
-Chart.defaults.Bar.barShowStroke = false;
-</script>
-
-<!-- This demo uses the active-users component -->
 <script src="components/active-users.js"></script>
 
 <script>

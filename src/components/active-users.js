@@ -2,7 +2,8 @@
 ---
 gapi.analytics.ready(function() {
 
-  var charts = new Object();;
+  var charts = new Object();
+  var dataTables = new Object();
 
   gapi.analytics.createComponent('ActiveUsers', {
 
@@ -75,44 +76,65 @@ gapi.analytics.ready(function() {
           }
 
           $.each( response.rows , function( index, value ){
-
             if(value[0] > 0) {
               while (value[0] != count) {
-                labels.unshift('');
+                labels.unshift('-' + count + ' min');
                 data.unshift(0);
                 count++;
               }
 
-              labels.unshift('');
+              labels.unshift('-' + count + ' min');
               data.unshift(value[1]);
               count++;
             }
           });
 
           while (count < 30) {
-            labels.unshift('');
+            labels.unshift('-' + count + ' min');
             data.unshift(0);
             count++;
           }
 
-          var chartData = {
-            labels: labels,
-            datasets: [
-              {
-                fillColor: "#{{ site.color.primary }}",
-                data: data
-              }
-            ]
+          var dataTable = new google.visualization.DataTable();
+          dataTable.addColumn('string', 'Minutes Ago');
+          dataTable.addColumn('number', 'PageViews');
+
+          $.each( labels , function( index, value ){
+            dataTable.addRow([value, parseInt(data[index])]);
+          });
+
+          var options = {
+            backgroundColor: "transparent",
+            legend: { position: 'none' },
+            vAxis: { textPosition: 'none', viewWindow: { min: 0 } },
+            hAxis: { showTextEvery: 5 },
           };
-          var ctx = $("#chart-" + ga_id)[0].getContext("2d");
-          var barChart = new Chart(ctx).Bar(chartData);
-          charts[ga_id] = barChart;
+
+          var chart = new google.visualization.SteppedAreaChart(document.getElementById("chart-" + ga_id));
+          chart.draw(dataTable, options);
+          charts[ga_id] = chart;
+          dataTables[ga_id] = dataTable;
         }
         else {
           //something wrong
           var chart = charts[ga_id];
-          chart.addData([0], '');
-          chart.removeData();
+          var dataTable = dataTables[ga_id];
+
+          var numRows = dataTable.getNumberOfRows();
+          for (var i = 0; i < numRows - 1; i++) {
+            var prev = dataTable.getValue(i + 1, 1);
+            dataTable.setValue(i, 1, prev);
+          }
+          dataTable.setValue(numRows - 1, 1, 0);
+
+          var options = {
+            backgroundColor: "transparent",
+            legend: { position: 'none' },
+            vAxis: { textPosition: 'none', viewWindow: { min: 0 } },
+            hAxis: { showTextEvery: 5 },
+          };
+
+          chart.draw(dataTable, options);
         }
       });
     },

@@ -94,6 +94,7 @@ a:hover {
 .Realtime {
   color: black;
   border-bottom: 2px solid #ecf0f1 !important;
+  margin-bottom: 5px;
 }
 .Realtime img{
   height:125px;
@@ -106,7 +107,7 @@ a:hover {
   margin: 0 2em;
 }
 .Realtime-chart {
-  height: 100px;
+  height: 150px;
 }
 .Realtime-chart canvas {
     height: 100px !important;
