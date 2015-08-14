@@ -8,7 +8,7 @@ summary:
   <div class="container">
     {% for post in site.posts %}
       <div class="row Realtime" id="realtime-{{ forloop.index }}">
-        <div class="col-sm-3">
+        <div class="col-sm-2">
           <div class="Realtime-content">
             <h4>
               {{ post.title }}
@@ -18,7 +18,7 @@ summary:
             </h1>
           </div>
         </div>
-        <div class="col-sm-9">
+        <div class="col-sm-10">
           <div class="Realtime-chart" id="chart-{{ post.ga-id }}">
           </div>
         </div>
@@ -80,6 +80,10 @@ gapi.analytics.ready(function() {
     realtime{{ forloop.index }}.classList.add(data.direction);
   });
   activeUsers{{ forloop.index }}.execute();
+
+  $(window).resize(function(){
+    activeUsers{{ forloop.index }}.resize();
+  });
 
   {% endfor %}
 

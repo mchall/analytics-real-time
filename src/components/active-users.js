@@ -107,7 +107,7 @@ gapi.analytics.ready(function() {
           charts[ga_id] = chart;
           dataTables[ga_id] = dataTable;
 
-          this.drawChart(chart, dataTable)
+          this.drawChart(chart, dataTable);
         }
         else {
           //something wrong
@@ -121,9 +121,16 @@ gapi.analytics.ready(function() {
           }
           dataTable.setValue(numRows - 1, 1, 0);
 
-          this.drawChart(chart, dataTable)
+          this.drawChart(chart, dataTable);
         }
       }.bind(this));
+    },
+
+    resize: function() {
+      var options = this.get();
+      var chart = charts[options.ga_id];
+      var dataTable = dataTables[options.ga_id];
+      this.drawChart(chart, dataTable);
     },
 
     drawChart: function(chart, dataTable) {
