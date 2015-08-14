@@ -24,9 +24,11 @@ gapi.analytics.ready(function() {
       // Wait until the user is authorized.
       if (gapi.analytics.auth.isAuthorized()) {
         this.getActiveUsers();
+        this.getPageViewHistory();
       }
       else {
         gapi.analytics.auth.once('success', this.getActiveUsers.bind(this));
+        gapi.analytics.auth.once('success', this.getPageViewHistory.bind(this));
       }
     },
 
@@ -62,6 +64,12 @@ gapi.analytics.ready(function() {
           pollingInterval);
         }
       }.bind(this));
+    },
+
+    getPageViewHistory: function() {
+      var options = this.get();
+      var pollingInterval = 60000; //minute
+      var ga_id = options.ga_id;
 
       gapi.client.analytics.data.realtime
       .get({ids: "ga:" + ga_id, metrics:'rt:pageviews', dimensions:'rt:minutesAgo'})
@@ -123,6 +131,12 @@ gapi.analytics.ready(function() {
 
           this.drawChart(chart, dataTable);
         }
+
+        if (this.polling = true) {
+          this.timeout = setTimeout(this.getPageViewHistory.bind(this),
+          pollingInterval);
+        }
+
       }.bind(this));
     },
 
