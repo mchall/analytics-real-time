@@ -103,17 +103,11 @@ gapi.analytics.ready(function() {
             dataTable.addRow([value, parseInt(data[index])]);
           });
 
-          var options = {
-            backgroundColor: "transparent",
-            legend: { position: 'none' },
-            vAxis: { textPosition: 'none', viewWindow: { min: 0 } },
-            hAxis: { showTextEvery: 5 },
-          };
-
           var chart = new google.visualization.SteppedAreaChart(document.getElementById("chart-" + ga_id));
-          chart.draw(dataTable, options);
           charts[ga_id] = chart;
           dataTables[ga_id] = dataTable;
+
+          this.drawChart(chart, dataTable)
         }
         else {
           //something wrong
@@ -127,16 +121,20 @@ gapi.analytics.ready(function() {
           }
           dataTable.setValue(numRows - 1, 1, 0);
 
-          var options = {
-            backgroundColor: "transparent",
-            legend: { position: 'none' },
-            vAxis: { textPosition: 'none', viewWindow: { min: 0 } },
-            hAxis: { showTextEvery: 5 },
-          };
-
-          chart.draw(dataTable, options);
+          this.drawChart(chart, dataTable)
         }
-      });
+      }.bind(this));
+    },
+
+    drawChart: function(chart, dataTable) {
+      var options = {
+        backgroundColor: "transparent",
+        legend: { position: 'none' },
+        vAxis: { textPosition: 'none', viewWindow: { min: 0 } },
+        hAxis: { showTextEvery: 5 },
+      };
+
+      chart.draw(dataTable, options);
     },
 
     onIncrease: function() {

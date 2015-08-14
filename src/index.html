@@ -8,7 +8,7 @@ summary:
   <div class="container">
     {% for post in site.posts %}
       <div class="row Realtime" id="realtime-{{ forloop.index }}">
-        <div class="col-md-4">
+        <div class="col-sm-3">
           <div class="Realtime-content">
             <h4>
               {{ post.title }}
@@ -18,7 +18,7 @@ summary:
             </h1>
           </div>
         </div>
-        <div class="col-md-8">
+        <div class="col-sm-9">
           <div class="Realtime-chart" id="chart-{{ post.ga-id }}">
           </div>
         </div>
