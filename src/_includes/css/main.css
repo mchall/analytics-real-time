@@ -99,16 +99,15 @@ a:hover {
   font-weight: 100;
   line-height: 34px;
   margin: 0 2em;
-  float: left;
 }
 .Realtime-chart {
-  margin-left: 2em;
   width: 80%;
   height: 100px;
 }
 .Realtime-chart canvas {
-    width:100%;
-    height:100%;
+    height: 100px !important;
+    width: 100% !important;
+    max-width: 800px;
 }
 .Realtime-value {
   font-weight: 700;
