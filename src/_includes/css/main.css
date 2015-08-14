@@ -32,6 +32,11 @@ a:hover {
   text-decoration: underline;
 }
 
+.container {
+  margin-right: 0px;
+  margin-left: 0px;
+}
+
 /**
  * Banner Component
  */
@@ -101,7 +106,6 @@ a:hover {
   margin: 0 2em;
 }
 .Realtime-chart {
-  width: 80%;
   height: 100px;
 }
 .Realtime-chart canvas {

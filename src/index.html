@@ -5,25 +5,27 @@ summary:
 ---
 
 <main>
+  <div class="container">
     {% for post in site.posts %}
-    <div class="row Realtime" id="realtime-{{ forloop.index }}">
-      <div class="col-md-4">
-        <div class="Realtime-content">
-          <h4>
-            {{ post.title }}
-          </h4>
-          <h1>
-            <span class="Realtime-value" id="active-users-{{ forloop.index }}"></span>
-          </h1>
+      <div class="row Realtime" id="realtime-{{ forloop.index }}">
+        <div class="col-md-4">
+          <div class="Realtime-content">
+            <h4>
+              {{ post.title }}
+            </h4>
+            <h1>
+              <span class="Realtime-value" id="active-users-{{ forloop.index }}"></span>
+            </h1>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div class="Realtime-chart">
+            <canvas id="chart-{{ post.ga-id }}"></canvas>
+          </div>
         </div>
       </div>
-      <div class="col-md-8">
-        <div class="Realtime-chart">
-          <canvas id="chart-{{ post.ga-id }}"></canvas>
-        </div>
-      </div>
-    </div>
     {% endfor %}
+  </div>
 </main>
 
 <script src="assets/js/jquery-1.11.3.min.js"></script>
