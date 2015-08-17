@@ -4,7 +4,7 @@ title: Google Analytics Viewer
 summary:
 ---
 
-<main>
+<main id="main" class="unauthorized">
   <div class="container">
     {% for post in site.posts %}
       <div class="row Realtime" id="realtime-{{ forloop.index }}">
@@ -52,6 +52,7 @@ gapi.analytics.ready(function() {
   */
   gapi.analytics.auth.on('success', function() {
     document.body.classList.add('is-authorized');
+    $('#main').removeClass('unauthorized');
   });
 
   {% for post in site.posts %}

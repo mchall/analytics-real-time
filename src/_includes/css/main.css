@@ -32,6 +32,10 @@ a:hover {
   text-decoration: underline;
 }
 
+#main.unauthorized {
+    display: none;
+}
+
 .container {
   margin-right: 0px;
   margin-left: 0px;
