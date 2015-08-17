@@ -149,10 +149,14 @@ gapi.analytics.ready(function() {
 
     drawChart: function(chart, dataTable) {
       var options = {
-        backgroundColor: "transparent",
-        legend: { position: 'none' },
-        vAxis: { textPosition: 'none', viewWindow: { min: 0 } },
-        hAxis: { showTextEvery: 5 },
+          backgroundColor: "transparent",
+          legend: { position: 'none' },
+          hAxis: { showTextEvery: 4 },
+          vAxis: { minValue: 0 },
+          areaOpacity: 0.2,
+          connectSteps: false,
+          colors: ['#53A8FB'],
+          lineWidth: 4,
       };
 
       chart.draw(dataTable, options);
