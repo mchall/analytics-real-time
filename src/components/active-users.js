@@ -152,10 +152,10 @@ gapi.analytics.ready(function() {
           backgroundColor: "transparent",
           legend: { position: 'none' },
           hAxis: { showTextEvery: 4 },
-          vAxis: { minValue: 0 },
+          vAxis: { minValue: 0, viewWindow: {min: 0 } },
           areaOpacity: 0.2,
           connectSteps: false,
-          colors: ['#53A8FB'],
+          colors: ['#{{ site.color.primary }}'],
           lineWidth: 4,
       };
 
