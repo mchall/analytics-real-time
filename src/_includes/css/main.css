@@ -116,7 +116,7 @@ a:hover {
     max-width: 800px;
 }
 .Realtime-value {
-  font-weight: 700;
+  font-size: 150%;
 }
 .Realtime.increase {
   -webkit-animation: increase 6s;
