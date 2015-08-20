@@ -79,7 +79,11 @@ gapi.analytics.ready(function() {
   activeUsers{{ forloop.index }}.on('change', function(data) {
     realtime{{ forloop.index }}.classList.add(data.direction);
   });
-  activeUsers{{ forloop.index }}.execute();
+
+  function execute{{ forloop.index }}(){
+            activeUsers{{ forloop.index }}.execute();
+        }
+  setTimeout(execute{{ forloop.index }}, {{ forloop.index | times:1000 }});
 
   $(window).resize(function(){
     activeUsers{{ forloop.index }}.resize();
