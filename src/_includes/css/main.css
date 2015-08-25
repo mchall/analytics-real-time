@@ -36,10 +36,8 @@ a:hover {
     display: none;
 }
 
-.container {
-  margin-right: 0px;
-  margin-left: 0px;
-  width: 100%;
+#main {
+  color: black;
 }
 
 /**
@@ -79,57 +77,30 @@ a:hover {
 }
 
 /**
- * Base Component
- */
-
-.Component {
-  background: #fff;
-  display: none;
-  float: left;
-  padding: 1.5em;
-}
-.is-authorized .Component {
-  display: block;
-}
-
-/**
  * Realtime Component
  */
 
-.Realtime {
-  color: black;
-  border-bottom: 2px solid #ecf0f1 !important;
-  margin-bottom: 5px;
-}
-.Realtime img{
-  height:125px;
-  float: left;
-}
-.Realtime-content {
-  font-size: 20px;
-  font-weight: 100;
-  line-height: 34px;
-  margin: 0 2em;
-}
-.Realtime-chart {
-  height: 150px;
-}
-.Realtime-chart canvas {
-    height: 100px !important;
-    width: 100% !important;
-    max-width: 800px;
-}
-.Realtime-value {
-  font-size: 150%;
-}
-.Realtime.increase {
-  -webkit-animation: increase 6s;
-  animation: increase 6s;
-}
-.Realtime.decrease {
-  -webkit-animation: decrease 6s;
-  animation: decrease 6s;
-}
+ .Realtime-chart {
+   height: 150px;
+   width: 70%;
+   float: left;
+ }
+ .Realtime-content {
+     float: left;
+     width: 25%;
+     margin-left: 15px;
+ }
+ .Realtime-value {
+     font-size: 150%;
+ }
+ .Realtime.increase {
+   -webkit-animation: increase 6s;
+   animation: increase 6s;
+ }
+ .Realtime.decrease {
+   -webkit-animation: decrease 6s;
+   animation: decrease 6s;
+ }
 @-webkit-keyframes increase {
   0% {}
   10% {

@@ -5,28 +5,21 @@ summary:
 ---
 
 <input type="button" value="Authorize" id="authorize_button" style="display: none;"></input>
-
 <main id="main" class="unauthorized">
-  <div class="container">
     {% for post in site.posts %}
-      <div class="row Realtime" id="realtime-{{ forloop.index }}">
-        <div class="col-sm-2">
-          <div class="Realtime-content">
-            <h4>
-              {{ post.title }}
-            </h4>
-            <h1>
-              <span class="Realtime-value" id="active-users-{{ forloop.index }}"></span>
-            </h1>
-          </div>
+        <div id="realtime-{{ forloop.index }}">
+            <div class="Realtime-content">
+                <h4>
+                    {{ post.title }}
+                </h4>
+                <h1>
+                    <span class="Realtime-value" id="active-users-{{ forloop.index }}"></span>
+                </h1>
+            </div>
+            <div class="Realtime-chart" id="chart-{{ post.ga-id }}">
+            </div>
         </div>
-        <div class="col-sm-10">
-          <div class="Realtime-chart" id="chart-{{ post.ga-id }}">
-          </div>
-        </div>
-      </div>
-    {% endfor %}
-  </div>
+      {% endfor %}
 </main>
 
 <script src="assets/js/jquery-1.11.3.min.js"></script>
