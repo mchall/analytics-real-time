@@ -20,16 +20,8 @@ gapi.analytics.ready(function() {
     execute: function() {
       // Stop any polling currently going on.
       if (this.polling) this.stop();
-
-      // Wait until the user is authorized.
-      if (gapi.analytics.auth.isAuthorized()) {
-        this.getActiveUsers();
-        this.getPageViewHistory();
-      }
-      else {
-        gapi.analytics.auth.once('success', this.getActiveUsers.bind(this));
-        gapi.analytics.auth.once('success', this.getPageViewHistory.bind(this));
-      }
+      this.getActiveUsers();
+      this.getPageViewHistory();
     },
 
     stop: function() {

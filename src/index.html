@@ -4,6 +4,8 @@ title: Google Analytics Viewer
 summary:
 ---
 
+<input type="button" value="Authorize" id="authorize_button" style="display: none;"></input>
+
 <main id="main" class="unauthorized">
   <div class="container">
     {% for post in site.posts %}
@@ -34,44 +36,26 @@ summary:
 <script src="assets/js/jquery.animateNumber.min.js"></script>
 <script src="components/active-users.js"></script>
 
-<script>
-gapi.analytics.ready(function() {
+<script type="text/javascript">
+var clientId = '{{ site.client_id }}';
+var scopes = 'https://www.googleapis.com/auth/analytics.readonly';
 
-  /**
-  * Authorize this user.
-  */
-  gapi.analytics.auth.authorize({
-    container: 'auth',
-    clientid: '{{ site.client_id }}',
-  });
+function initialize() {
+  authorizationFlow(authorizationComplete, refreshComplete);
+}
 
-  /**
-  * Add a callback to add the `is-authorized` class to the body
-  * as soon as authorization is successful. This is used to help
-  * style components.
-  */
-  gapi.analytics.auth.on('success', function() {
-    document.body.classList.add('is-authorized');
-    $('#main').removeClass('unauthorized');
-  });
+function authorizationComplete(authResult) {
+  document.body.classList.add('is-authorized');
+  $('#main').removeClass('unauthorized');
 
   {% for post in site.posts %}
 
-  /**
-  * Create a new ActiveUsers instance to be rendered inside of an
-  * element with the id "active-users" and poll for changes every
-  * five seconds.
-  */
   var activeUsers{{ forloop.index }} = new gapi.analytics.ext.ActiveUsers({
     container: 'active-users-{{ forloop.index }}',
     pollingInterval: 30,
     ga_id: {{ post.ga-id }},
   });
 
-  /**
-  * This code adds/removes HTML classes to trigger CSS animations
-  * when the active user counts go up or down.
-  */
   var realtime{{ forloop.index }} = document.getElementById('realtime-{{ forloop.index }}');
   realtime{{ forloop.index }}.addEventListener('animationend', removeAnimationClasses);
   realtime{{ forloop.index }}.addEventListener('webkitAnimationEnd', removeAnimationClasses);
@@ -95,8 +79,54 @@ gapi.analytics.ready(function() {
     $('.Realtime').removeClass('increase');
     $('.Realtime').removeClass('decrease');
   }
-});
+}
 
+function refreshComplete() {
+}
+
+function authorizationFlow(authorization_complete, refresh_complete) {
+  checkAuth(false, handleAuthResult);
+
+  function checkAuth(prompt_user, callback) {
+    alert('checkAuth');
+    var options = {
+      client_id: clientId,
+      scope: scopes,
+      immediate: !prompt_user
+    }
+    gapi.auth.authorize(options, callback);
+  }
+
+  function handleAuthResult(authResult) {
+    var authorizeButton = document.getElementById('authorize_button');
+
+    // Has the user authorized this application?
+    if (authResult && !authResult.error) {
+      authorizeButton.style.display = 'none';
+      authorization_complete(authResult);
+      window.setTimeout(refreshToken, authResult.expires_in * 1000);
+    } else {
+      authorizeButton.style.display = 'block';
+      authorizeButton.onclick = handleAuthClick;
+    }
+  }
+
+  function handleAuthClick(event) {
+    checkAuth(true, handleAuthResult);
+    return false;
+  }
+
+  function refreshToken() {
+    checkAuth(false, refreshComplete);
+  }
+
+  function refreshComplete(authResult) {
+    refresh_complete(authResult);
+    window.setTimeout(refreshToken, authResult.expires_in * 1000);
+  }
+}
 </script>
+<script type="text/javascript" src="https://apis.google.com/js/client.js?onload=initialize"></script>
+
 </body>
 </html>
