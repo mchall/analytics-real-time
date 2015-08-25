@@ -88,7 +88,6 @@ function authorizationFlow(authorization_complete, refresh_complete) {
   checkAuth(false, handleAuthResult);
 
   function checkAuth(prompt_user, callback) {
-    alert('checkAuth');
     var options = {
       client_id: clientId,
       scope: scopes,
